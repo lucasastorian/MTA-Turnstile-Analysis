@@ -41,34 +41,15 @@ end_date = datetime.datetime(2019, 7, 16)
 turnstile_df = import_data(start_date, end_date)
 ```
 
-    100%|██████████| 4/4 [00:36<00:00,  9.92s/it]
-
-
-
 ```python
-# The Raw Data is incredibly messy. Entries and Exits are cummalative, 
-# there are multiple anomalous entries that make no sense, 
+# The Raw Data is incredibly messy. Entries and Exits are cummalative,
+# there are multiple anomalous entries that make no sense,
 # some of the columns have white spaces, etc. etc.
 turnstile_df.head()
 ```
 
 
-
-
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -180,19 +161,6 @@ turnstile_df.head(3)
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -319,19 +287,6 @@ new_gct.head()
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -418,7 +373,7 @@ sns.set()
 days_of_the_week = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
 ax = new_gct.plot.line(y="ENTRIES", use_index=False)
 new_gct.plot.line(ax=ax, y="EXITS", style='g', use_index=False)
- 
+
 ax.set_ylabel("Number of People", fontsize=15)
 ax.set_xlabel("")
 ax.set_title("A Turnstile's Traffic at a Grand Central Tirnstile in Late June 2019", fontsize=18)
@@ -430,7 +385,7 @@ ax.legend(["Entries", "Exits"], prop={'size': 12});
 ```
 
 
-![Turnstile Traffic at Grand Central Terminal](https://github.com/lucasastorian/MTA-Turnstile-Analysis/blob/master/charts/1.svg)
+![png](output_11_0.png)
 
 
 
@@ -444,7 +399,7 @@ ax = new_gct[0:6].plot.line(y='ENTRIES', use_index=False)
 # Traffic at a Turnstile Tuesday through Sunday
 for x in range(6, 42, 6):
     new_gct[x:x+6].plot.line(ax=ax, y="ENTRIES", use_index=False)
-    
+
 ax.set_xticks(np.arange(6))
 ax.set_xticklabels(xtick_times)
 ax.legend(["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"])
@@ -456,7 +411,7 @@ plt.xticks(fontsize=12);
 ```
 
 
-![Turnstile Entries and Exits](https://github.com/lucasastorian/MTA-Turnstile-Analysis/blob/master/charts/2.svg)
+![png](output_12_0.png)
 
 
 
@@ -479,7 +434,7 @@ gct_tirnstiles = grouped_turnstiles.loc[mask]
 days_of_the_week = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
 ax = gct_tirnstiles.plot.line(y="ENTRIES", use_index=False)
 gct_tirnstiles.plot.line(ax=ax, y="EXITS", style='g', use_index=False)
- 
+
 ax.set_ylabel("Number of People", fontsize=15)
 ax.set_xlabel("")
 ax.set_title("Grand Central Terminal Traffic in Late June 2019", fontsize=18)
@@ -491,7 +446,7 @@ ax.legend(["Entries", "Exits"], prop={'size': 12})
 ```
 
 
-![Grand Central Terminal Traffic](https://github.com/lucasastorian/MTA-Turnstile-Analysis/blob/master/charts/3.svg)
+![png](output_14_0.png)
 
 
 
@@ -507,19 +462,6 @@ daily_gct_data.head()
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -599,7 +541,7 @@ plt.savefig("GCT Total Long Traffic.svg");
 ```
 
 
-![Grand Central Terminal Traffic](https://github.com/lucasastorian/MTA-Turnstile-Analysis/blob/master/charts/4.svg)
+![png](output_16_0.png)
 
 
 
@@ -612,19 +554,6 @@ total_ridership_count.head()
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -718,7 +647,7 @@ ax.legend(["Entries"]);
 ```
 
 
-![Total Entries per Station](https://github.com/lucasastorian/MTA-Turnstile-Analysis/blob/master/charts/5.svg)
+![png](output_18_0.png)
 
 
 
@@ -736,19 +665,6 @@ traffic_differences.head()
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -809,7 +725,7 @@ traffic_differences.head()
 
 
 ```python
-# Identify the stations with the highest and lowest differences between average entrances / exits 
+# Identify the stations with the highest and lowest differences between average entrances / exits
 # between Weekdays and Weekends.
 highest_entry_diffs = traffic_differences.sort_values("Entry_diffs", ascending=False).head(7)
 high_exit_diffs = traffic_differences.sort_values("Exit_diffs", ascending=False).head(7)
@@ -838,7 +754,7 @@ ax.set_title("The Stations with the Highest Commuter Traffic (Entries)", fontsiz
 ```
 
 
-![Stations with the Highest Commuter Traffic](https://github.com/lucasastorian/MTA-Turnstile-Analysis/blob/master/charts/6.svg)
+![png](output_24_0.png)
 
 
 
@@ -853,7 +769,7 @@ ax.set_title("The Stations with the Highest Commuter Traffic (Exits)", fontsize=
 ```
 
 
-![Stations with the Highest Commuter Traffic](https://github.com/lucasastorian/MTA-Turnstile-Analysis/blob/master/charts/7.svg)
+![png](output_25_0.png)
 
 
 
@@ -869,7 +785,7 @@ ax.set_title("The Stations with the Lowest Commuter Traffic (entries)", fontsize
 ```
 
 
-![Stations with Lowest Commuter Traffic](https://github.com/lucasastorian/MTA-Turnstile-Analysis/blob/master/charts/8.svg)
+![png](output_26_0.png)
 
 
 
@@ -885,7 +801,7 @@ ax.set_title("The Stations with the Lowest Commuter Traffic (exits)", fontsize=1
 ```
 
 
-![Stations with Lowest Commuter Traffic](https://github.com/lucasastorian/MTA-Turnstile-Analysis/blob/master/charts/9.svg)
+![png](output_27_0.png)
 
 
 
