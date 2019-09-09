@@ -376,7 +376,7 @@ new_gct.plot.line(ax=ax, y="EXITS", style='g', use_index=False)
 
 ax.set_ylabel("Number of People", fontsize=15)
 ax.set_xlabel("")
-ax.set_title("A Turnstile's Traffic at a Grand Central Tirnstile in Late June 2019", fontsize=18)
+ax.set_title("A Turnstile's Traffic at a Grand Central Turnstile in Late June 2019", fontsize=18)
 ax.set_xticklabels(days_of_the_week)
 ax.set_xticks(np.linspace(0, 41, 7))
 plt.yticks(fontsize=12)
@@ -385,7 +385,7 @@ ax.legend(["Entries", "Exits"], prop={'size': 12});
 ```
 
 
-![png](output_11_0.png)
+![Turnstile Traffic](https://github.com/lucasastorian/MTA-Turnstile-Analysis/blob/master/charts/1.svg)
 
 
 
@@ -405,13 +405,13 @@ ax.set_xticklabels(xtick_times)
 ax.legend(["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"])
 ax.set_xlabel("Time", fontsize=14)
 ax.set_ylabel("Number of Entries", fontsize=14)
-ax.set_title("Number of Entries at a Grand Central Tirnstile Every Four Hours", fontsize=18)
+ax.set_title("Number of Entries at a Grand Central Turnstile Every Four Hours", fontsize=18)
 plt.yticks(fontsize=11)
 plt.xticks(fontsize=12);
 ```
 
 
-![png](output_12_0.png)
+![Turnstile Traffic](https://github.com/lucasastorian/MTA-Turnstile-Analysis/blob/master/charts/2.svg)
 
 
 
@@ -446,7 +446,7 @@ ax.legend(["Entries", "Exits"], prop={'size': 12})
 ```
 
 
-![png](output_14_0.png)
+![Turnstile Traffic](https://github.com/lucasastorian/MTA-Turnstile-Analysis/blob/master/charts/3.svg
 
 
 
@@ -541,7 +541,7 @@ plt.savefig("GCT Total Long Traffic.svg");
 ```
 
 
-![png](output_16_0.png)
+![GCT Traffic](https://github.com/lucasastorian/MTA-Turnstile-Analysis/blob/master/charts/4.svg)
 
 
 
@@ -647,7 +647,7 @@ ax.legend(["Entries"]);
 ```
 
 
-![png](output_18_0.png)
+![Total Rides Per Station](https://github.com/lucasastorian/MTA-Turnstile-Analysis/blob/master/charts/5.svg)
 
 
 
@@ -754,7 +754,7 @@ ax.set_title("The Stations with the Highest Commuter Traffic (Entries)", fontsiz
 ```
 
 
-![png](output_24_0.png)
+![Highest Commuter Entries](https://github.com/lucasastorian/MTA-Turnstile-Analysis/blob/master/charts/6.svg)
 
 
 
@@ -769,7 +769,7 @@ ax.set_title("The Stations with the Highest Commuter Traffic (Exits)", fontsize=
 ```
 
 
-![png](output_25_0.png)
+![Highest Commuter Exits](https://github.com/lucasastorian/MTA-Turnstile-Analysis/blob/master/charts/7.svg)
 
 
 
@@ -785,7 +785,7 @@ ax.set_title("The Stations with the Lowest Commuter Traffic (entries)", fontsize
 ```
 
 
-![png](output_26_0.png)
+![Lowest Commuter Entries](https://github.com/lucasastorian/MTA-Turnstile-Analysis/blob/master/charts/8.svg)
 
 
 
@@ -801,7 +801,7 @@ ax.set_title("The Stations with the Lowest Commuter Traffic (exits)", fontsize=1
 ```
 
 
-![png](output_27_0.png)
+![Lowest Commuter Exits](https://github.com/lucasastorian/MTA-Turnstile-Analysis/blob/master/charts/9.svg
 
 
 
