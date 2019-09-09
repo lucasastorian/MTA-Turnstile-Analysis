@@ -75,6 +75,8 @@ def cleanse_data(df):
 
     df = pd.merge(df, station_coordinates, on="STATION")
 
+    df = df.drop(['C/A', 'UNIT', 'SCP', 'LINENAME', 'DIVISION'], axis=1)
+
     return df
 
 
