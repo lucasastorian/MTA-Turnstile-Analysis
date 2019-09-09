@@ -446,7 +446,7 @@ ax.legend(["Entries", "Exits"], prop={'size': 12})
 ```
 
 
-![Turnstile Traffic](https://github.com/lucasastorian/MTA-Turnstile-Analysis/blob/master/charts/3.svg
+![Turnstile Traffic](https://github.com/lucasastorian/MTA-Turnstile-Analysis/blob/master/charts/3.svg)
 
 
 
@@ -801,7 +801,7 @@ ax.set_title("The Stations with the Lowest Commuter Traffic (exits)", fontsize=1
 ```
 
 
-![Lowest Commuter Exits](https://github.com/lucasastorian/MTA-Turnstile-Analysis/blob/master/charts/9.svg
+![Lowest Commuter Exits](https://github.com/lucasastorian/MTA-Turnstile-Analysis/blob/master/charts/9.svg)
 
 
 
