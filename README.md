@@ -9,6 +9,14 @@ The Metropolitan Transportation Authority (MTA), which serves around 11 million 
 
 In this notebook, I'll be using helper functions in order to directly download the data from the MTAs website, and to cleanse the data - which is quite messy.
 
+# Data Cleansing and Preprocessing
+
+The first step is importing the required python libraries, and helper functions into the notebook. Turnstile data from the specified date range is directly downloaded from the MTA website, and subjected to various preprocessing, including:
+* Stripping leading and trailing spaces from DataFrame's column names, and alphanumeric columns
+* Creating a DateTime column
+* Disaggregating the entries and exits, which are collected cumulatively
+* Dropping rows with outliers or NaN values
+* Adding station coordinates collected with the Google Maps API
 
 ```python
 import datetime
@@ -40,110 +48,6 @@ end_date = datetime.datetime(2019, 7, 16)
 
 turnstile_df = import_data(start_date, end_date)
 ```
-
-```python
-# The Raw Data is incredibly messy. Entries and Exits are cummalative,
-# there are multiple anomalous entries that make no sense,
-# some of the columns have white spaces, etc. etc.
-turnstile_df.head()
-```
-
-
-<div>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>C/A</th>
-      <th>UNIT</th>
-      <th>SCP</th>
-      <th>STATION</th>
-      <th>LINENAME</th>
-      <th>DIVISION</th>
-      <th>DATE</th>
-      <th>TIME</th>
-      <th>DESC</th>
-      <th>ENTRIES</th>
-      <th>EXITS</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>A002</td>
-      <td>R051</td>
-      <td>02-00-00</td>
-      <td>59 ST</td>
-      <td>NQR456W</td>
-      <td>BMT</td>
-      <td>07/06/2019</td>
-      <td>00:00:00</td>
-      <td>REGULAR</td>
-      <td>7124325</td>
-      <td>2412359</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>A002</td>
-      <td>R051</td>
-      <td>02-00-00</td>
-      <td>59 ST</td>
-      <td>NQR456W</td>
-      <td>BMT</td>
-      <td>07/06/2019</td>
-      <td>04:00:00</td>
-      <td>REGULAR</td>
-      <td>7124336</td>
-      <td>2412362</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>A002</td>
-      <td>R051</td>
-      <td>02-00-00</td>
-      <td>59 ST</td>
-      <td>NQR456W</td>
-      <td>BMT</td>
-      <td>07/06/2019</td>
-      <td>08:00:00</td>
-      <td>REGULAR</td>
-      <td>7124350</td>
-      <td>2412390</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>A002</td>
-      <td>R051</td>
-      <td>02-00-00</td>
-      <td>59 ST</td>
-      <td>NQR456W</td>
-      <td>BMT</td>
-      <td>07/06/2019</td>
-      <td>12:00:00</td>
-      <td>REGULAR</td>
-      <td>7124442</td>
-      <td>2412471</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>A002</td>
-      <td>R051</td>
-      <td>02-00-00</td>
-      <td>59 ST</td>
-      <td>NQR456W</td>
-      <td>BMT</td>
-      <td>07/06/2019</td>
-      <td>16:00:00</td>
-      <td>REGULAR</td>
-      <td>7124608</td>
-      <td>2412505</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
 
 ```python
 # I've written a couple of functions to do all the data cleansing,
@@ -277,94 +181,6 @@ grand_central_turnstile = turnstile_df.loc[date_mask]
 # resample data at four hour intervals
 new_gct = grand_central_turnstile.resample("4H", base=1, on="DATETIME", label="left").sum()
 ```
-
-
-```python
-new_gct.head()
-```
-
-
-
-
-<div>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>ENTRIES</th>
-      <th>EXITS</th>
-      <th>WDAY</th>
-      <th>WEEK</th>
-      <th>HOUR</th>
-      <th>LATITUDE</th>
-      <th>LONGITUDE</th>
-    </tr>
-    <tr>
-      <th>DATETIME</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2019-06-17 01:00:00</th>
-      <td>40</td>
-      <td>69</td>
-      <td>0</td>
-      <td>25</td>
-      <td>1</td>
-      <td>40.752726</td>
-      <td>-73.977229</td>
-    </tr>
-    <tr>
-      <th>2019-06-17 05:00:00</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>2019-06-17 09:00:00</th>
-      <td>53</td>
-      <td>1560</td>
-      <td>0</td>
-      <td>25</td>
-      <td>9</td>
-      <td>40.752726</td>
-      <td>-73.977229</td>
-    </tr>
-    <tr>
-      <th>2019-06-17 13:00:00</th>
-      <td>221</td>
-      <td>1455</td>
-      <td>0</td>
-      <td>25</td>
-      <td>13</td>
-      <td>40.752726</td>
-      <td>-73.977229</td>
-    </tr>
-    <tr>
-      <th>2019-06-17 17:00:00</th>
-      <td>602</td>
-      <td>859</td>
-      <td>0</td>
-      <td>25</td>
-      <td>17</td>
-      <td>40.752726</td>
-      <td>-73.977229</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
 
 
 
