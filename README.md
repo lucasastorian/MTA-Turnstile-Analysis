@@ -9,6 +9,8 @@ The Metropolitan Transportation Authority (MTA), which serves around 11 million 
 
 In this notebook, I'll be using helper functions in order to directly download the data from the MTAs website, and to cleanse the data - which is quite messy.
 
+![Turnstile](https://github.com/lucasastorian/MTA-Turnstile-Analysis/blob/master/images/turnstile.jpg)
+
 # Data Cleansing and Preprocessing
 
 The first step is importing the required python libraries, and helper functions into the notebook. Turnstile data from the specified date range is directly downloaded from the MTA website, and subjected to various preprocessing, including:
