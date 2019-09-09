@@ -430,7 +430,7 @@ ax.legend(["Entries", "Exits"], prop={'size': 12});
 ```
 
 
-![png](output_11_0.png)
+![Turnstile Traffic at Grand Central Terminal](https://github.com/lucasastorian/MTA-Turnstile-Analysis/blob/master/charts/1.svg)
 
 
 
@@ -456,7 +456,7 @@ plt.xticks(fontsize=12);
 ```
 
 
-![png](output_12_0.png)
+![Turnstile Entries and Exits](https://github.com/lucasastorian/MTA-Turnstile-Analysis/blob/master/charts/2.svg)
 
 
 
@@ -491,7 +491,7 @@ ax.legend(["Entries", "Exits"], prop={'size': 12})
 ```
 
 
-![png](output_14_0.png)
+![Grand Central Terminal Traffic](https://github.com/lucasastorian/MTA-Turnstile-Analysis/blob/master/charts/3.svg)
 
 
 
@@ -599,7 +599,7 @@ plt.savefig("GCT Total Long Traffic.svg");
 ```
 
 
-![png](output_16_0.png)
+![Grand Central Terminal Traffic](https://github.com/lucasastorian/MTA-Turnstile-Analysis/blob/master/charts/4.svg)
 
 
 
@@ -718,7 +718,7 @@ ax.legend(["Entries"]);
 ```
 
 
-![png](output_18_0.png)
+![Total Entries per Station](https://github.com/lucasastorian/MTA-Turnstile-Analysis/blob/master/charts/5.svg)
 
 
 
@@ -838,7 +838,7 @@ ax.set_title("The Stations with the Highest Commuter Traffic (Entries)", fontsiz
 ```
 
 
-![png](output_24_0.png)
+![Stations with the Highest Commuter Traffic](https://github.com/lucasastorian/MTA-Turnstile-Analysis/blob/master/charts/6.svg)
 
 
 
@@ -853,7 +853,7 @@ ax.set_title("The Stations with the Highest Commuter Traffic (Exits)", fontsize=
 ```
 
 
-![png](output_25_0.png)
+![Stations with the Highest Commuter Traffic](https://github.com/lucasastorian/MTA-Turnstile-Analysis/blob/master/charts/7.svg)
 
 
 
@@ -869,7 +869,7 @@ ax.set_title("The Stations with the Lowest Commuter Traffic (entries)", fontsize
 ```
 
 
-![png](output_26_0.png)
+![Stations with Lowest Commuter Traffic](https://github.com/lucasastorian/MTA-Turnstile-Analysis/blob/master/charts/8.svg)
 
 
 
@@ -885,7 +885,7 @@ ax.set_title("The Stations with the Lowest Commuter Traffic (exits)", fontsize=1
 ```
 
 
-![png](output_27_0.png)
+![Stations with Lowest Commuter Traffic](https://github.com/lucasastorian/MTA-Turnstile-Analysis/blob/master/charts/9.svg)
 
 
 
