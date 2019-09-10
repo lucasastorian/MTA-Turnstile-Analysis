@@ -263,7 +263,7 @@ mask = (grouped_turnstiles["DATETIME"] > datetime.datetime(2019,6,17)) \
 & (grouped_turnstiles["DATETIME"] < datetime.datetime(2019, 6,24)) \
 & (grouped_turnstiles["STATION"] == 'GRD CNTRL-42 ST')
 
-gct_tirnstiles = grouped_turnstiles.loc[mask]
+gct_tirnstiles = grouped_turnstiles.loc[mask].resample('4H', base=1, on='DATETIME', label='left').sum()
 
 ```
 
@@ -287,7 +287,7 @@ ax.legend(["Entries", "Exits"], prop={'size': 12})
 
 ![Turnstile Traffic](https://github.com/lucasastorian/MTA-Turnstile-Analysis/blob/master/charts/3.svg)
 
-
+# Explore Traffic in Grand Central Terminal
 
 ```python
 gct_data = turnstile_df.loc[turnstile_df["STATION"] == "GRD CNTRL-42 ST"]
@@ -363,20 +363,19 @@ daily_gct_data.head()
 ```python
 # Look at Daily Traffic for Grand Central Terminal
 days_of_the_week = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
-ax = daily_gct_data[0:7].plot.line(y="ENTRIES", use_index=False)
+ax = daily_gct_data[2:9].plot.line(y="ENTRIES", use_index=False)
+daily_gct_data[9:16].plot.line(y='ENTRIES', ax=ax, use_index=False)
+daily_gct_data[16:23].plot.line(y='ENTRIES', ax=ax, use_index=False)
 
-for i in range(7, (len(daily_gct_data) - 7), 7):
-    daily_gct_data[i:i+7].plot.line(ax=ax, y="ENTRIES", use_index=False)
-
-ax.set_ylabel("Number of People", fontsize=15)
+ax.set_ylabel("Number of People", fontsize=16)
 ax.set_xlabel("")
-ax.set_title("Grand Central Terminal Traffic From Late March to Late June 2019", fontsize=18)
+ax.set_title("Grand Central Terminal Traffic in June - July 2019", fontsize=18)
 ax.set_xticklabels(days_of_the_week)
 ax.set_xticks(np.linspace(0, 6, 7))
-plt.yticks(fontsize=12)
-plt.xticks(fontsize=13)
+plt.yticks(fontsize=15)
+plt.xticks(fontsize=15)
 ax.get_legend().remove()
-plt.savefig("GCT Total Long Traffic.svg");
+ax.legend(["June 17 - 24", "June 25 - July 1", "July 1 - 7"], prop={'size': 13});
 ```
 
 
