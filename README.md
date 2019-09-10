@@ -1,6 +1,5 @@
 
 # Exploring MTA Turnstile Data
-
 The Metropolitan Transportation Authority (MTA), which serves around 11 million passengers in New York State daily,  routinely publishes their Turnstile Data showing the number of entries and exits at each turnstile, per hour. In this notebook, we're going to explore that data and identify:
 
 * How traffic at Grand Central Terminal varies over time
@@ -10,7 +9,6 @@ The Metropolitan Transportation Authority (MTA), which serves around 11 million 
 ![Turnstile](https://github.com/lucasastorian/MTA-Turnstile-Analysis/blob/master/images/turnstile.jpg)
 
 # Data Cleansing and Preprocessing
-
 The first step is importing the required python libraries, and helper functions into the notebook. Turnstile data from the specified date range is directly downloaded from the MTA website, and subjected to various preprocessing, including
 * Stripping leading and trailing spaces from the column names, and alphanumeric columns
 * Creating a DateTime column
@@ -161,6 +159,11 @@ turnstile_df.head(3)
 </table>
 </div>
 
+# Explore Traffic at a Grand Central Turnstile
+After cleansing and preprocessing the turnstile data, we're going to focus on a specific turnstile in Grand Central Terminal for a Week in June 2019. We're going to resample the data at four hour intervals so that it can be clearly graphed. In the carts below, one can see that
+* Exits tend to peak in the morning, while entries peak in the afternoon and evenings
+* There is significantly less traffic on the weekend than during the week
+* The number of entries late on Friday is significantly less than during other week days, implying that commuters may go home relatively early on Friday
 
 
 ```python
