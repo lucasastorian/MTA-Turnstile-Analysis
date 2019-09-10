@@ -288,6 +288,7 @@ ax.legend(["Entries", "Exits"], prop={'size': 12})
 ![Turnstile Traffic](https://github.com/lucasastorian/MTA-Turnstile-Analysis/blob/master/charts/3.svg)
 
 # Explore Traffic in Grand Central Terminal
+Next, we look at traffic in Grand Central Terminal across three weeks in June - July 2019. We see there is some variation in traffic between weeks, and that there was a significant dip on Thursday, July 4th. There was a similar, although not as severe dip on Friday, July 5th, hinting that commuters chose to take Friday off as well.
 
 ```python
 gct_data = turnstile_df.loc[turnstile_df["STATION"] == "GRD CNTRL-42 ST"]
@@ -381,112 +382,11 @@ ax.legend(["June 17 - 24", "June 25 - July 1", "July 1 - 7"], prop={'size': 13})
 
 ![GCT Traffic](https://github.com/lucasastorian/MTA-Turnstile-Analysis/blob/master/charts/4.svg)
 
-
-
-```python
-total_ridership_count = turnstile_df.groupby("STATION").sum().sort_values("ENTRIES", ascending=False)
-total_ridership_count.head()
-```
-
-
-
-
-<div>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>ENTRIES</th>
-      <th>EXITS</th>
-      <th>WDAY</th>
-      <th>WEEK</th>
-      <th>HOUR</th>
-      <th>LATITUDE</th>
-      <th>LONGITUDE</th>
-    </tr>
-    <tr>
-      <th>STATION</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>34 ST-PENN STA</th>
-      <td>3943616</td>
-      <td>3553992</td>
-      <td>47667</td>
-      <td>421754</td>
-      <td>172483</td>
-      <td>653961.172271</td>
-      <td>-1.187405e+06</td>
-    </tr>
-    <tr>
-      <th>GRD CNTRL-42 ST</th>
-      <td>3305843</td>
-      <td>2609092</td>
-      <td>28934</td>
-      <td>259330</td>
-      <td>106566</td>
-      <td>402433.171225</td>
-      <td>-7.305251e+05</td>
-    </tr>
-    <tr>
-      <th>34 ST-HERALD SQ</th>
-      <td>2832196</td>
-      <td>2633129</td>
-      <td>25994</td>
-      <td>228143</td>
-      <td>90085</td>
-      <td>353741.182670</td>
-      <td>-6.422967e+05</td>
-    </tr>
-    <tr>
-      <th>23 ST</th>
-      <td>2594169</td>
-      <td>1906092</td>
-      <td>30439</td>
-      <td>271436</td>
-      <td>109400</td>
-      <td>421836.156124</td>
-      <td>-7.661062e+05</td>
-    </tr>
-    <tr>
-      <th>TIMES SQ-42 ST</th>
-      <td>2423024</td>
-      <td>2331916</td>
-      <td>24314</td>
-      <td>214862</td>
-      <td>81807</td>
-      <td>333545.967242</td>
-      <td>-6.055101e+05</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-
-```python
-ax = total_ridership_count.plot.hist(y="ENTRIES", bins=60)
-
-ax.set_xlabel("Distribution of Total Rides per Station", fontsize=14)
-ax.set_ylabel('')
-ax.set_title("Total Rides per Station", fontsize=18)
-plt.yticks(fontsize=12)
-plt.xticks(fontsize=13)
-ax.legend(["Entries"]);
-```
-
-
-![Total Rides Per Station](https://github.com/lucasastorian/MTA-Turnstile-Analysis/blob/master/charts/5.svg)
-
+# Identifying Commuter Stations
+In order to identify the stations with the most commuters, we assume that commuters generally only travel during the week and not on weekends. The stations with the largest average difference between daily traffic on weekdays and weekdays thus serves the most commuters. Below, the weekday_weekend_traffic_differences function
+* calculates the average number of entries and exits during the week
+* calculates the average number of entries and exits on weekends
+* calculates the difference between the two for every station
 
 
 ```python
@@ -574,7 +474,7 @@ lowest_exit_diffs = traffic_differences.sort_values("Exit_diffs", ascending=True
 
 # Analyzing Commuter Traffic
 
-Stations with the biggest difference in traffic between Weekdays and Weekends are probably also the stations with the most commuters. The weekday_weekend_traffic_differences function calculates the average difference in traffic between Weekdays and Weekends. Below I've identified that
+By plotting the stations with the largest and smallest difference between weekday and weekend travel, we show that
 * Grand Central, 34th Penn Street, and 23rd Street have the highest surplus of entries during the week
 * 34th Penn Street, Grand Central Terminal, and Fulton have the highest surplus of exits during the week
 * Coney Island has by far the highest surplus of entries on the weekend
