@@ -164,6 +164,7 @@ After cleansing and preprocessing the turnstile data, we're first going to analy
 * Exits tend to peak in the morning, while entries peak in the afternoon and evenings
 * There is significantly less traffic on the weekend than during the week
 * The number of entries late on Friday is significantly less than during other week days, implying that commuters may go home relatively early
+* There is a also a huge peak in exits around 9am on Monday
 
 
 ```python
@@ -182,7 +183,7 @@ new_gct = grand_central_turnstile.resample("4H", base=1, on="DATETIME", label="l
 
 ```python
 sns.set()
-days_of_the_week = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+days_of_the_week = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun", ""]
 ax = new_gct.plot.line(y="ENTRIES", use_index=False)
 new_gct.plot.line(ax=ax, y="EXITS", style='g', use_index=False)
 
@@ -190,7 +191,7 @@ ax.set_ylabel("Number of People", fontsize=15)
 ax.set_xlabel("")
 ax.set_title("A Turnstile's Traffic at a Grand Central Turnstile in Late June 2019", fontsize=18)
 ax.set_xticklabels(days_of_the_week)
-ax.set_xticks(np.linspace(0, 41, 7))
+ax.set_xticks(np.linspace(0, 41, 8))
 plt.yticks(fontsize=12)
 plt.xticks(fontsize=13)
 ax.legend(["Entries", "Exits"], prop={'size': 12});
