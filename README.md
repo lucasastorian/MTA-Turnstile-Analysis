@@ -160,10 +160,10 @@ turnstile_df.head(3)
 </div>
 
 # Explore Traffic at a Grand Central Turnstile
-After cleansing and preprocessing the turnstile data, we're going to focus on a specific turnstile in Grand Central Terminal for a Week in June 2019. We're going to resample the data at four hour intervals so that it can be clearly graphed. In the carts below, one can see that
+After cleansing and preprocessing the turnstile data, we're first going to analyze the traffic at a single turnstile in Grand Central Terminal for a Week in June 2019. We're going to resample the data at four hour intervals so that it can be clearly graphed. In the carts below, one can see that
 * Exits tend to peak in the morning, while entries peak in the afternoon and evenings
 * There is significantly less traffic on the weekend than during the week
-* The number of entries late on Friday is significantly less than during other week days, implying that commuters may go home relatively early on Friday
+* The number of entries late on Friday is significantly less than during other week days, implying that commuters may go home relatively early
 
 
 ```python
@@ -223,7 +223,33 @@ plt.xticks(fontsize=12);
 ```
 
 
-![Turnstile Traffic](https://github.com/lucasastorian/MTA-Turnstile-Analysis/blob/master/charts/2.svg)
+![Turnstile Entries](https://github.com/lucasastorian/MTA-Turnstile-Analysis/blob/master/charts/2.svg)
+
+```python
+sns.set()
+xtick_times = "1:00 5:00 09:00 13:00 17:00 21:00".split()
+
+# Traffic at a Turnstile on Monday
+ax = new_gct[0:6].plot.line(y='EXITS', use_index=False)
+
+# Traffic at a Turnstile Tuesday through Sunday
+for x in range(6, 42, 6):
+    new_gct[x:x+6].plot.line(ax=ax, y="ENTRIES", use_index=False)
+
+ax.set_xticks(np.arange(6))
+ax.set_xticklabels(xtick_times)
+ax.legend(["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"])
+ax.set_xlabel("Time", fontsize=15)
+ax.set_ylabel("Number of Exits", fontsize=15)
+ax.set_title("Number of Exits at a Grand Central Tirnstile Every Four Hours", fontsize=18)
+plt.yticks(fontsize=13)
+plt.xticks(fontsize=13);
+```
+![Turnstile Exits](https://github.com/lucasastorian/MTA-Turnstile-Analysis/blob/master/charts/10.svg)
+
+# Explore Traffic Throughout Grand Central Terminal
+
+Next, we aggregate all entries and exits for every turnstile in Grand Central Terminal.
 
 
 
