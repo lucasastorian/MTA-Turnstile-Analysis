@@ -163,13 +163,6 @@ turnstile_df.head(3)
 
 
 
-
-```python
-# drop columns we don't need
-turnstile_df = turnstile_df.drop(['C/A', 'UNIT', 'SCP', 'LINENAME', 'DIVISION'], axis=1)
-```
-
-
 ```python
 # Show Data from a Turnstile at Grand Central Terminal for a Week in June 2019
 date_mask = (turnstile_df["DATETIME"] > datetime.datetime(2019,6,17)) & \
