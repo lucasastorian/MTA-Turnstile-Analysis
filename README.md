@@ -250,7 +250,7 @@ plt.xticks(fontsize=13);
 
 # Explore Traffic Throughout Grand Central Terminal
 
-Next, we aggregate all entries and exits for every turnstile in Grand Central Terminal.
+Next, we aggregate all entries and exits for every turnstile in Grand Central Terminal for a week in June 2019.
 
 
 
@@ -270,7 +270,7 @@ gct_tirnstiles = grouped_turnstiles.loc[mask]
 
 ```python
 # Look at all traffic in Grand Central Terminal for a Week in 2019
-days_of_the_week = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+days_of_the_week = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun", ""]
 ax = gct_tirnstiles.plot.line(y="ENTRIES", use_index=False)
 gct_tirnstiles.plot.line(ax=ax, y="EXITS", style='g', use_index=False)
 
@@ -278,7 +278,7 @@ ax.set_ylabel("Number of People", fontsize=15)
 ax.set_xlabel("")
 ax.set_title("Grand Central Terminal Traffic in Late June 2019", fontsize=18)
 ax.set_xticklabels(days_of_the_week)
-ax.set_xticks(np.linspace(0, 104, 7))
+ax.set_xticks(np.linspace(0, 104, 8))
 plt.yticks(fontsize=12)
 plt.xticks(fontsize=13)
 ax.legend(["Entries", "Exits"], prop={'size': 12})
